@@ -1,0 +1,178 @@
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: starichat # your blog title name
+subtitle:  
+author: starichat # 作者
+language: 
+timezone: 
+
+# custom Site settings
+# more detail check out docs
+SEOTitle: starichat's blog 
+header-img: 
+email: starichat@163.com
+description: "starichat 的个人博客"
+keyword: # seo key words
+
+favicon: # your favicon png
+# custom end
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://starichat.github.io
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+
+# SNS settings
+# RSS:
+weibo_username: starichat
+zhihu_username: starichat
+github_username: starichat
+# twitter_username: 
+# facebook_username:  
+# linkedin_username:  
+
+# Build settings
+anchorjs: false                        # if you want to customize anchor. check out line:181 of `post.html`
+
+
+# Disqus settings 
+disqus_username: 
+
+# Duoshuo settings
+duoshuo_username:  # 你的多说帐号
+# Share component is depend on Comment so we can NOT use share only.
+duoshuo_share: true                     # set to false if you want to use Comment without Sharing
+
+# Use livere
+use_livere:
+
+# Valine comment system https://valine.js.org
+valine: 
+  enable: false
+  appid:  #Leancloud应用的appId
+  appkey:  #Leancloud应用的appKey
+  verify: false #验证码
+  notify: false #评论回复提醒
+  avatar: mm #评论列表默认头像样式
+  placeholder: Just go go #评论框占位符
+
+# Analytics settings
+# Baidu Analytics
+ba_track_id:
+# Google Analytics
+ga_track_id:             # Format: UA-xxxxxx-xx
+ga_domain:
+
+# Sidebar settings
+sidebar: true
+sidebar-about-description: 尽力活得有趣 # 个人描述
+sidebar-avatar: https://s2.ax1x.com/2019/01/26/knUd5q.jpg    # use absolute URL
+
+
+# Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
+
+# friends
+friends:  # 友链
+menu:
+  home: /      //主页
+  categories: /categories //分类
+  archives: /archives   //归档
+  tags: /tags   //标签                  （添加此行即可）
+  about: /about   //关于
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: true
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: false
+  auto_detect: false
+  tab_replace:
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 8
+pagination_dir: page
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+
+markdown:
+  plugins:
+    - markdown-it-abbr
+    - markdown-it-footnote
+    - markdown-it-ins
+    - markdown-it-sub
+    - markdown-it-sup
+    - markdown-it-emoji
+
+## Themes: https://hexo.io/themes/
+theme: Anisina
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+      type: git
+      repo: https://github.com/starichat/starichat.github.io.git
+      name: starichat
+      email: # 注册Github的邮箱
+      branch: master
+
+
+# img CDN path
+cdn-url:  # 你的CDN地址
+
+# Qiniu imageView2 API
+# More info http://developer.qiniu.com/code/v6/api/kodo-api/image/imageview2.html
+clip-content: "?imageView2/1/w/1400/h/400/interlace/1/q/90"
+clip-avatar: "?imageView2/2/w/300/h/300/interlace/1/q/90"
+clip-home-post-bg: https://s2.ax1x.com/2019/01/26/knUd5q.jpg
+
+# post default images
+post-default-img: https://s2.ax1x.com/2019/01/26/knz3fe.jpg #博文默认的图片
+post-default-img-mobile:  #移动端显示的图片
+
+# search api , set your custom key
+swiftype_key: 
+
+
+# archive page title 
+archive:
+    title: archives
+    description: 可以根据归档日期检索所有文件
