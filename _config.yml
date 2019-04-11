@@ -148,11 +148,9 @@ theme: Anisina
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-      type: git
-      repo: https://github.com/starichat/starichat.github.io.git
-      name: starichat
-      email: # 注册Github的邮箱
-      branch: master
+  type: git
+  repo: git@github.com:starichat/starichat.github.io.git
+  branch: master
 
 
 # img CDN path
