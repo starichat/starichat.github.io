@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="starichat 的个人博客">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://s2.ax1x.com/2019/01/26/knUd5q.jpg">
+    <link rel="alternate" type="application/atom+xml" title="starichat" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        两年多的安卓开发教会了我很多｜starichat&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://starichat.pro/2019/04/21/两年多的安卓开发教会了我很多/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    starichat
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/archives/">archives</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="https://s2.ax1x.com/2019/01/26/knz3fe.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('https://s2.ax1x.com/2019/01/26/knz3fe.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>两年多的安卓开发教会了我很多</h1>
+                    
+                    <span class="meta">
+                         作者 starichat
+                        <span>
+                          日期 2019-04-21
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#安卓"
+                           title="安卓">安卓</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            两年多的安卓开发教会了我很多
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <blockquote>
+<p>原文：<a href="https://blog.aritraroy.in/what-my-2-years-of-android-development-have-taught-me-the-hard-way-52b495ba5c51" target="_blank" rel="noopener">https://blog.aritraroy.in/what-my-2-years-of-android-development-have-taught-me-the-hard-way-52b495ba5c51</a><br>翻译：starichat</p>
+</blockquote>
+<p>我仍让记得2014年的那天，当我决定开始安卓开发而且那是我一生中做的最好的一个决定。到现在为止已经有两年半的时间了，我有机会在安卓学习很多东西并且抛弃很多以前的很多想法。</p>
+<p>最初当我开始学习时，我没有导师或者能够指导我以正确的方式做事的人。我犯了很多错误，也浪费了很多时间，后来纠正了他们。</p>
+<p>之后，经历一年半的时间，我得到一个机会去和一些非常优秀且经验丰富的安卓开发者一起工作，他们指导而且帮助我以更好的方式塑造事物。这两个阶段都帮助我以艰难的方式学习了很多东西。我学会了什么事该做，最重要的是什么事不该做。</p>
+<p>在这篇文章中，我讲分享这些年我收集的一些宝贵经验。它可能会帮助你们更快地开始，而不是重复我的错误。</p>
+<h2 id="1-不要重复造轮子"><a href="#1-不要重复造轮子" class="headerlink" title="1.不要重复造轮子"></a>1.不要重复造轮子</h2><p>最初，我不想使用开源库。无论我需要什么，我只是想自己做。这是一个非常糟糕的想法。</p>
+<p>如果当你开发你的app有问题时，并且这些问题已经被其他人以一种很好的方式解决了，为什么不使用他们呢？你能节约很多时间呢。</p>
+<p>更多地关注于你的app的核心业务逻辑。如果你想在应用中进行网络呼叫，则无需自行进行改造。</p>
+<h2 id="2-明智地选择-library"><a href="#2-明智地选择-library" class="headerlink" title="2.明智地选择 library"></a>2.明智地选择 library</h2><p>Github 中有很多开源库可供您免费使用。但是不要太兴奋，盲目地开始使用 library。</p>
+<p>检查特定库具有的star的数量，越多越好。检查该库的作者是否也创建了一些其他的流行的库。检查问题，这可以让您更好地了解库在生产中的稳定性。</p>
+<p>如果你能负担得起的时间，你应该深入了解该库的代码，并检查自己是否真的值得使用。</p>
+<p>您只是想确保您要使用的代码是可靠的，无错误的和高质量的。</p>
+<h2 id="3-坐下喝杯咖啡并且阅读更多的代码"><a href="#3-坐下喝杯咖啡并且阅读更多的代码" class="headerlink" title="3.坐下喝杯咖啡并且阅读更多的代码"></a>3.坐下喝杯咖啡并且阅读更多的代码</h2><p>我们花了大部分时间阅读别人的代码，而不是写自己。如果你没有这样做，请从今天开始这样做。</p>
+<p>无论你今天能写什么代码，只是因为你有一天在某个地方阅读和学习了一些东西。这只是你已经知道的事情的反映。你只能通过阅读和学习其他人的工作来成长和提高自己。</p>
+<p>Android的优点在于它是一个完全开源的平台。深入研究代码并检查他们如何实现框架。Github中有成千上万的开源库。只需选择一个库，看看开发人员是如何实现它的。</p>
+<h2 id="4-为了上帝的缘故，保持适当的代码标准"><a href="#4-为了上帝的缘故，保持适当的代码标准" class="headerlink" title="4.为了上帝的缘故，保持适当的代码标准"></a>4.为了上帝的缘故，保持适当的代码标准</h2><p>如果您将编码与写作进行比较，那么编码标准就像您的笔迹。</p>
+<p>因为你会阅读更多其他代码，其他人也会阅读你的很多代码而你不想吓唬他们，是吗？如果您在一个组织中工作并与其他开发人员大量合作，请特别注意它。</p>
+<p>编写简短、干净并且可读的代码，你和阅读你代码的人讲彻底享受这些代码。你的代码应该想故事一样阅读。</p>
+<p>如果你写了一段代码并且你的同事几天没有跟你说话，请不要抱怨。</p>
+<h2 id="5-你需要proguard，是的，你需要他"><a href="#5-你需要proguard，是的，你需要他" class="headerlink" title="5.你需要proguard，是的，你需要他"></a>5.你需要proguard，是的，你需要他</h2><p>ProGuard不仅缩小了您的代码，而且使您的代码混淆，使逆向工程师更难理解，复制和操纵它。</p>
+<p>它完全免费，并与Android SDK捆绑在一起，绝对没有理由不使用它。</p>
+<p>我见过几个开发人员在没有ProGuard的情况下在市场上发布他们的app。一个不那么熟练的黑客操作一个没有Proguard的应用程序应该花费不到几个小时。</p>
+<h2 id="6-使用适当的架构"><a href="#6-使用适当的架构" class="headerlink" title="6.使用适当的架构"></a>6.使用适当的架构</h2><p>你讲永远感谢自己首先选择合适的架构。</p>
+<p>你可以使用MVP(模型-视图-展示器)架构，该架构可以将您的代码分离到不同的易于管理的层中，从而提高代码灵活性病大大减少维护时间。</p>
+<h2 id="7-用户界面就像一个笑话，如果你必须解释它，他是坏的。"><a href="#7-用户界面就像一个笑话，如果你必须解释它，他是坏的。" class="headerlink" title="7.用户界面就像一个笑话，如果你必须解释它，他是坏的。"></a>7.用户界面就像一个笑话，如果你必须解释它，他是坏的。</h2><p>如果你只是作为安卓开发者的身份为任意组织工作，您可能不需要过于关注这一点，因为有UI / UX设计师可以解决这个问题。</p>
+<p>但如果你是一个独立的开发人员，你需要直截了当。我已经看到开发人员创建了具有强大功能的非常好的应用程序，但UI看起来很糟糕，UX使用起来很麻烦。</p>
+<p>设计一个干净，简洁，美观的界面，方便眼睛。你不应该只是像开发人员那样思考，而应该集中精力点燃你内心隐藏的设计师。</p>
+<p>尝试通过设计漂亮的用户界面来为用户创造持久的印象，这样他们就会比其他用户更频繁地回到您的应用，并倾向于转化更多的价值（可能会购买高级版本）。</p>
+<h2 id="8-分析是你最好的朋友"><a href="#8-分析是你最好的朋友" class="headerlink" title="8.分析是你最好的朋友"></a>8.分析是你最好的朋友</h2><p>如果你想创建一个真正令人惊叹的应用程序，您需要严重依赖分析工具分析应用程序不同部分的性能和使用情况。</p>
+<p>通过分析，我指的是崩溃报告和应用程序使用情况跟踪，你需要他们。</p>
+<p>无论你做什么，你都无法做出完美的事情。当真实用户开始在各种android设备和各种android版本上使用您的应用时，你甚至会看到一些最好的编写代码。</p>
+<p>崩溃报告工具可以帮助你跟踪和修复他们。</p>
+<p>你还需要像营销人员一样思考并分析应用程序各个部分的使用情况。这将帮助你弥合你制作的内容与用户实际需要的内容之间的差距。</p>
+<h2 id="9-成为营销忍者"><a href="#9-成为营销忍者" class="headerlink" title="9.成为营销忍者"></a>9.成为营销忍者</h2><p>如果你是一名个人开发人员，你必须考虑“仅仅是一名开发人员”，并且还必须了解营销。</p>
+<p>我看到好的产品由于缺乏适当的营销而失败，而那些不那么叫的产品因为良好的营销而大获成功。</p>
+<p>如果你认真对待自己的工作并希望它能够吸引大量受众，那么您需要投入时间和金钱来正确营销你的应用。但是在开始营销活动之前，请确保你的应用能够稳定，并准备好所有功能。你想从你花费的每一分钱中获得最大的转换，对吗？</p>
+<p>花时间研究你的竞争对手是谁以及如何击败他们。确保你可以立即参与竞争的那些以及为了未来战斗而必须保留的那些。</p>
+<h2 id="10-是时候优化你的APP了"><a href="#10-是时候优化你的APP了" class="headerlink" title="10.是时候优化你的APP了"></a>10.是时候优化你的APP了</h2><p>这是我们大多数人通常不会做的事情，但你应该而且你需要这样做。</p>
+<p>编写代码和编写“优化”代码之间存在很大差异。编写快速运行的代码，占用更少的内存并消耗更少的设备存储空间。</p>
+<p>一个未优化的应用程序在正常情况下运行良好，但当遇到不同的压力情况时，它可以向您显示其真实的颜色。</p>
+<p>检查应用程序使用的内存量并查找内存泄漏。请记住，一个微小的泄漏可以沉没一艘大船。花时间了解垃圾收集器如何在Java中工作，创建堆转储和分析您的活动对象。</p>
+<h2 id="11-使用Gradle构建每周节省超过5小时"><a href="#11-使用Gradle构建每周节省超过5小时" class="headerlink" title="11.使用Gradle构建每周节省超过5小时"></a>11.使用Gradle构建每周节省超过5小时</h2><p>您很可能使用Android Studio开发Android应用程序并使用Gradle作为构建系统。Gradle很棒，但它的速度很慢，当你的项目规模开始增长时，它会比蜗牛慢。</p>
+<p>我记得无数个小时我只是坐着等待Gradle构建完成。在繁重的工作日里，我只是在Gradle构建上浪费了大约一个小时，这就像每周5小时的排水沟一样。</p>
+<p>但是，有一些方法可以加快速度。</p>
+<p>你可以按照这个和这个帖子显著改善您的构建速度。我构建时间从4分钟下降到不到30秒后适当的优化。（由于某种原因，这两个帖子在此处无访问，可以点击文末阅读原文，查看简要的中文翻译教程.)</p>
+<h2 id="12-测试，测试和完成时，再次测试"><a href="#12-测试，测试和完成时，再次测试" class="headerlink" title="12.测试，测试和完成时，再次测试"></a>12.测试，测试和完成时，再次测试</h2><p>没有比测试更重要的了。这应该是列表顶部的内容。</p>
+<p>尽可能彻底地测试您的应用。花时间编写自动化测试用例。为您的应用创建各种压力情况，看看它是否能够存活。</p>
+<p>我曾经犯过一个错误，即快速发布我的应用程序并没有花时间进行测试。我在等待我的用户面对错误，报告它然后我会去解决它们。</p>
+<p>从来没有，永远这样做。通过减少测试时间，您可以节省一天，一两天或一周，但可能需要花费两倍以上的时间。</p>
+<h2 id="13-Android-Fragmentation是一个伪装的恶魔"><a href="#13-Android-Fragmentation是一个伪装的恶魔" class="headerlink" title="13.Android Fragmentation是一个伪装的恶魔"></a>13.Android Fragmentation是一个伪装的恶魔</h2><p>碎片是Android中最大的问题之一，谷歌似乎不愿修复它，但你必须忍受它。</p>
+<p>各种各样的Android设备具有不同的屏幕尺寸和硬件规格，来自众多不同的设备制造商，他们根据自己的内容定制操作系统。</p>
+<p>除此之外，还有各种Android版本，其中Google无处不在地添加/删除API功能，以进一步增加您的工作量（此处为示例）。</p>
+<p>例如，没有一个Android开发人员在没有使用SharedPreferences API的情况下完成了应用。它是如此常见，但它在三星Galaxy S与Android 2.2（这里的错误报告）中被打破。</p>
+<p>花更多时间为不同的屏幕尺寸创建不同的布局。在不同的设备上进行测试，具有不同的版本，不同的规格和来自不同的OEM。</p>
+<p>永远不要认为某些东西会起作用，因为它看起来如此。</p>
+<h2 id="14-开始使用Git，今天！"><a href="#14-开始使用Git，今天！" class="headerlink" title="14.开始使用Git，今天！"></a>14.开始使用Git，今天！</h2><p>如果你还没有使用Git，请继续并立即开始使用它。</p>
+<p>当我开始Android开发时，我很遗憾不知道Git是什么软糖。我曾经每天复制整个项目，并在我的硬盘中保留一个备份，在云中保留另一个备份。似乎很愚蠢？是的，绝对是。</p>
+<p>Git可以显着改善您的工作流程。如果有人要我命名我每天使用的工具并且不能停止使用？每次都是Git和Git。</p>
+<p>并且可能在使用它几天后你会爱上它并想知道Git如何在内部工作，所以在这里它已经为你准备好了。</p>
+<p>而经过一段时间后，你会自己开始一个大项目，并获得你应该如何保持适当的分支模型困惑，所以在这里你去。</p>
+<p>额外奖励：如果您刚刚开始并且无法支付维护GitHub中私人存储库的每月订阅费，您可以尝试BitBucket，它可以让您免费获得。</p>
+<h2 id="15-让黑客难上加难"><a href="#15-让黑客难上加难" class="headerlink" title="15.让黑客难上加难"></a>15.让黑客难上加难</h2><p>Android的开源特性使其容易受到攻击。每个Android应用都可以轻松反编译，反向工程，翻录，分析和操作。</p>
+<p>你不希望这发生在你的应用上，对吗？</p>
+<p>您应该知道如何在应用程序中本地安全地存储API密钥。如果您正在处理用户的敏感数据，那么您必须知道如何加密它们，选择什么算法（安全但快速）。</p>
+<p>您还应该将加密密钥安全地存储在服务器中或本地（如果需要）。您应该阻止使用ADB（Android Debug Bridge）备份您的应用数据。如果要将敏感数据存储在数据库中，请考虑对其进行模糊处理。</p>
+<p>如果您的应用程序具有高级版本，该版本会被破解并免费发布。你会在业务上遭受严重损失，对吧？</p>
+<p>您可以采取一些措施来防止您的应用被篡改。没有100％的安全性。任何熟练和坚定的黑客都拥有合适的资源，工具和耐心可以破解您的应用程序。</p>
+<p>你想要做的就是让黑客破解它变得困难，而且非常困难。</p>
+<h2 id="16-在低端设备上开发"><a href="#16-在低端设备上开发" class="headerlink" title="16.在低端设备上开发"></a>16.在低端设备上开发</h2><p>每个人都喜欢使用高端Android智能手机，我也是如此。但请记住将其保留仅供个人使用，不得将其用于开发目的。</p>
+<p>高端设备将在开发应用程序时隐藏许多缺陷。假设你在UI线程中做了一些事情，它为一个滞后的UI做出了贡献，但在功能强大的设备上，你可能永远不会注意到这一点。</p>
+<p>一个旧的低端设备，倾倒了大量的应用程序，使其成为开发设备的理想选择。</p>
+<h2 id="17-投资学习设计模式"><a href="#17-投资学习设计模式" class="headerlink" title="17.投资学习设计模式"></a>17.投资学习设计模式</h2><p>这项投资将永远为您付出。</p>
+<p>在开发大型和复杂的应用程序时，您将面临一些常见的问题，这些问题可能是由比您更有能力的人解决的，那就是设计模式发挥作用的时候。</p>
+<p>从今天开始花一些时间学习Java设计模式。这是一个Github项目，展示了人类已知的所有设计模式。</p>
+<p>首先，学习最重要的一些，如Singleton，Adapter，Factory Method，Iterator，Dependency Injection，Event Driven Architecture，Builder，Callback，Strategy，Facade和Producer Consumer。</p>
+<p>好像很多？实际上并非如此。一旦你潜入，你会开始爱他们。</p>
+<p>专业提示：阅读GoF的设计模式，Martin Fowler的重构和Joshua Bloch的Effective Java等书籍。</p>
+<blockquote>
+<p>词汇指南：</p>
+</blockquote>
+<h2 id="Dive-into-深入"><a href="#Dive-into-深入" class="headerlink" title="Dive into 深入"></a>Dive into 深入</h2><h2 id="blindly-盲目地"><a href="#blindly-盲目地" class="headerlink" title="blindly 盲目地"></a>blindly 盲目地</h2><h1 id="gems-宝石"><a href="#gems-宝石" class="headerlink" title="gems  宝石"></a>gems  宝石</h1><h1 id="shape-things-in-a-much-better-way-用一种更好的方式塑造事物"><a href="#shape-things-in-a-much-better-way-用一种更好的方式塑造事物" class="headerlink" title="shape things in a much better way  用一种更好的方式塑造事物"></a>shape things in a much better way  用一种更好的方式塑造事物</h1><h1 id="phase-章节"><a href="#phase-章节" class="headerlink" title="phase  章节"></a>phase  章节</h1><h1 id="a-hell-lot-of-大量的"><a href="#a-hell-lot-of-大量的" class="headerlink" title="a hell lot of  大量的"></a>a hell lot of  大量的</h1><h1 id="Initially-初始化"><a href="#Initially-初始化" class="headerlink" title="Initially  初始化"></a>Initially  初始化</h1><h1 id="to-do-things-the-right-way-用正确的方式去做事"><a href="#to-do-things-the-right-way-用正确的方式去做事" class="headerlink" title="to do things the right way  用正确的方式去做事"></a>to do things the right way  用正确的方式去做事</h1><h2 id="unlearn-抛弃"><a href="#unlearn-抛弃" class="headerlink" title="unlearn  抛弃"></a>unlearn  抛弃</h2>
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2019/04/21/whireshark数据包分析/" data-toggle="tooltip" data-placement="top"
+                           title="whireshark数据包分析">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2019/04/14/懒加载实现解决加载「卡」的情况/" data-toggle="tooltip" data-placement="top"
+                           title="懒加载实现解决加载「卡」的情况">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-不要重复造轮子"><span class="toc-text">1.不要重复造轮子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-明智地选择-library"><span class="toc-text">2.明智地选择 library</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-坐下喝杯咖啡并且阅读更多的代码"><span class="toc-text">3.坐下喝杯咖啡并且阅读更多的代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-为了上帝的缘故，保持适当的代码标准"><span class="toc-text">4.为了上帝的缘故，保持适当的代码标准</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-你需要proguard，是的，你需要他"><span class="toc-text">5.你需要proguard，是的，你需要他</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-使用适当的架构"><span class="toc-text">6.使用适当的架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-用户界面就像一个笑话，如果你必须解释它，他是坏的。"><span class="toc-text">7.用户界面就像一个笑话，如果你必须解释它，他是坏的。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-分析是你最好的朋友"><span class="toc-text">8.分析是你最好的朋友</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-成为营销忍者"><span class="toc-text">9.成为营销忍者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-是时候优化你的APP了"><span class="toc-text">10.是时候优化你的APP了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-使用Gradle构建每周节省超过5小时"><span class="toc-text">11.使用Gradle构建每周节省超过5小时</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-测试，测试和完成时，再次测试"><span class="toc-text">12.测试，测试和完成时，再次测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-Android-Fragmentation是一个伪装的恶魔"><span class="toc-text">13.Android Fragmentation是一个伪装的恶魔</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-开始使用Git，今天！"><span class="toc-text">14.开始使用Git，今天！</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-让黑客难上加难"><span class="toc-text">15.让黑客难上加难</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-在低端设备上开发"><span class="toc-text">16.在低端设备上开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-投资学习设计模式"><span class="toc-text">17.投资学习设计模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dive-into-深入"><span class="toc-text">Dive into 深入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#blindly-盲目地"><span class="toc-text">blindly 盲目地</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gems-宝石"><span class="toc-text">gems  宝石</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#shape-things-in-a-much-better-way-用一种更好的方式塑造事物"><span class="toc-text">shape things in a much better way  用一种更好的方式塑造事物</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#phase-章节"><span class="toc-text">phase  章节</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#a-hell-lot-of-大量的"><span class="toc-text">a hell lot of  大量的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Initially-初始化"><span class="toc-text">Initially  初始化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#to-do-things-the-right-way-用正确的方式去做事"><span class="toc-text">to do things the right way  用正确的方式去做事</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#unlearn-抛弃"><span class="toc-text">unlearn  抛弃</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#安卓"
+                           title="安卓">安卓</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/starichat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/starichat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; starichat 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://starichat.pro/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="https://s2.ax1x.com/2019/01/26/knUd5q.jpg">
+</body>
+
+</html>

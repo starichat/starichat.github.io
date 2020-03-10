@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="starichat 的个人博客">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://s2.ax1x.com/2019/01/26/knUd5q.jpg">
+    <link rel="alternate" type="application/atom+xml" title="starichat" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Tip|Java对日期的各种操作｜starichat&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://starichat.pro/2019/04/14/Tip-Java对日期的各种操作/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    starichat
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/archives/">archives</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="https://s2.ax1x.com/2019/01/26/knz3fe.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('https://s2.ax1x.com/2019/01/26/knz3fe.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Tip|Java对日期的各种操作</h1>
+                    
+                    <span class="meta">
+                         作者 starichat
+                        <span>
+                          日期 2019-04-14
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Tips"
+                           title="Tips">Tips</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Tip|Java对日期的各种操作
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="java-日期的各种操作"><a href="#java-日期的各种操作" class="headerlink" title="java 日期的各种操作"></a>java 日期的各种操作</h1><h2 id="输出前一天，前一周，前一个月的时间"><a href="#输出前一天，前一周，前一个月的时间" class="headerlink" title="输出前一天，前一周，前一个月的时间"></a>输出前一天，前一周，前一个月的时间</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; 格式化日期时间</span><br><span class="line">	SimpleDateFormat  sdf &#x3D; new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span><br><span class="line">		Date dateNow &#x3D; new Date();  &#x2F;&#x2F;获取当前时间</span><br><span class="line">		Calendar cl &#x3D; Calendar.getInstance();  &#x2F;&#x2F; 获取日历实例</span><br><span class="line">		cl.setTime(dateNow);  &#x2F;&#x2F;  当当前时间设置为日历实例的时间</span><br><span class="line">&#x2F;&#x2F;		cl.add(Calendar.DAY_OF_YEAR, -1);	&#x2F;&#x2F;一天前的时间</span><br><span class="line">&#x2F;&#x2F;		cl.add(Calendar.WEEK_OF_YEAR, -1);	&#x2F;&#x2F;一周前的时间</span><br><span class="line">&#x2F;&#x2F;		cl.add(Calendar.MONTH, -1);			&#x2F;&#x2F;一月前的时间</span><br><span class="line">		Date dateFrom &#x3D; cl.getTime();</span><br></pre></td></tr></table></figure>
+<h2 id="获取-UTC-时间，同时和本地时间转换"><a href="#获取-UTC-时间，同时和本地时间转换" class="headerlink" title="获取 UTC 时间，同时和本地时间转换"></a>获取 UTC 时间，同时和本地时间转换</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">    public  class UTCTimeUtil &#123;</span><br><span class="line"></span><br><span class="line">    private static DateFormat format &#x3D; new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;) ;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 得到UTC时间，类型为字符串，格式为&quot;yyyy-MM-dd HH:mm:ss.SSS&quot; 例如：2019-04-13 10:03:10.125 (精确到毫秒级)</span><br><span class="line">     * 如果获取失败，返回null</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public static String getUTCTime() &#123;</span><br><span class="line">        StringBuffer UTCTimeBuffer &#x3D; new StringBuffer();</span><br><span class="line">        &#x2F;&#x2F; 取得本地时间日历实例</span><br><span class="line">        Calendar cal &#x3D; Calendar.getInstance() ;</span><br><span class="line">        &#x2F;&#x2F; 获取时间偏移量</span><br><span class="line">        int zoneOffset &#x3D; cal.get(java.util.Calendar.ZONE_OFFSET);</span><br><span class="line">        &#x2F;&#x2F; 获取夏令时差：</span><br><span class="line">        int dstOffset &#x3D; cal.get(java.util.Calendar.DST_OFFSET);</span><br><span class="line">        &#x2F;&#x2F; 从本地时间里扣除这些差量，即可以取得UTC时间：</span><br><span class="line">        cal.add(java.util.Calendar.MILLISECOND, -(zoneOffset + dstOffset));</span><br><span class="line">        int year &#x3D; cal.get(Calendar.YEAR);</span><br><span class="line">        int month &#x3D; cal.get(Calendar.MONTH)+1;</span><br><span class="line">        int day &#x3D; cal.get(Calendar.DAY_OF_MONTH);</span><br><span class="line">        int hour &#x3D; cal.get(Calendar.HOUR_OF_DAY);</span><br><span class="line">        int minute &#x3D; cal.get(Calendar.MINUTE); </span><br><span class="line">        int second &#x3D; cal.get(Calendar.SECOND);</span><br><span class="line">        int milliSecond &#x3D; cal.get(Calendar.MILLISECOND);</span><br><span class="line">        UTCTimeBuffer.append(year).append(&quot;-&quot;).append(month).append(&quot;-&quot;).append(day) ;</span><br><span class="line">        UTCTimeBuffer.append(&quot; &quot;).append(hour).append(&quot;:&quot;).append(minute).append(&quot;:&quot;).append(second).append(&quot;.&quot;).append(milliSecond) ;</span><br><span class="line">        try&#123;</span><br><span class="line">            format.parse(UTCTimeBuffer.toString()) ;</span><br><span class="line">            return UTCTimeBuffer.toString() ;</span><br><span class="line">        &#125;catch(ParseException e)</span><br><span class="line">        &#123;</span><br><span class="line">            e.printStackTrace() ;</span><br><span class="line">        &#125;</span><br><span class="line">        return null ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 将UTC时间转换为指定时区时间</span><br><span class="line">     * @param UTCTime</span><br><span class="line">     * @param timeZone  示例&quot;GMT-8&quot; 东八区</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public static String getLocalTimeFromUTC(String UTCTime,String timeZone)&#123;</span><br><span class="line">        java.util.Date UTCDate &#x3D; null ;</span><br><span class="line">        String localTimeStr &#x3D; null ;</span><br><span class="line">        try &#123;</span><br><span class="line">            UTCDate &#x3D; format.parse(UTCTime);</span><br><span class="line">            format.setTimeZone(TimeZone.getTimeZone(timeZone)) ;</span><br><span class="line">            localTimeStr &#x3D; format.format(UTCDate) ;</span><br><span class="line">        &#125; catch (ParseException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return localTimeStr ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123; </span><br><span class="line">        String UTCTimeStr &#x3D; getUTCTimeStr() ;</span><br><span class="line">        System.out.println(UTCTimeStr); </span><br><span class="line">        System.out.println(getLocalTimeFromUTC(UTCTimeStr,&quot;GMT-8&quot;));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2019/04/14/懒加载实现解决加载「卡」的情况/" data-toggle="tooltip" data-placement="top"
+                           title="懒加载实现解决加载「卡」的情况">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2019/04/14/Algorithm-Reverse-Linked-List/" data-toggle="tooltip" data-placement="top"
+                           title="Algorithm | Reverse Linked List ">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java-日期的各种操作"><span class="toc-text">java 日期的各种操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#输出前一天，前一周，前一个月的时间"><span class="toc-text">输出前一天，前一周，前一个月的时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取-UTC-时间，同时和本地时间转换"><span class="toc-text">获取 UTC 时间，同时和本地时间转换</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Tips"
+                           title="Tips">Tips</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/starichat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/starichat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; starichat 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://starichat.pro/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="https://s2.ax1x.com/2019/01/26/knUd5q.jpg">
+</body>
+
+</html>

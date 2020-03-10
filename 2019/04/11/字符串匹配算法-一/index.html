@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="starichat 的个人博客">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://s2.ax1x.com/2019/01/26/knUd5q.jpg">
+    <link rel="alternate" type="application/atom+xml" title="starichat" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        字符串匹配算法(一)｜starichat&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://starichat.pro/2019/04/11/字符串匹配算法-一/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    starichat
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/archives/">archives</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="https://s2.ax1x.com/2019/01/26/knz3fe.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('https://s2.ax1x.com/2019/01/26/knz3fe.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>字符串匹配算法(一)</h1>
+                    
+                    <span class="meta">
+                         作者 starichat
+                        <span>
+                          日期 2019-04-11
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#算法"
+                           title="算法">算法</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            字符串匹配算法(一)
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>字符串匹配算法，在工程中用得很多，我们用到的最多的数据类型恐怕就是字符串了。我们用到的很多函数，诸如 indexOf（），lastIndexOf() 等，他们的底层就需要依赖字符串匹配算法了。</p>
+<p>字符串匹配算法很多，先来看看较为简单，易理解的算法吧，他们分别是 BF 算法和 RK 算法。</p>
+<h2 id="BF-算法"><a href="#BF-算法" class="headerlink" title="BF 算法"></a>BF 算法</h2><p>BF 算法就是暴力破解的意思。先定义两个概念：主串和模式串。字符串匹配就是在主串中匹配模式串。<br>下面来看看 BF 算法定义：<br>在主串中，检查起始位置分别是 0，1，2….n-m 且长度为 m 的 n-m + 1 个子串，看有没有跟模式串匹配的。如下图：<br>从 第一个字符开始和主串匹配，每次没有匹配成功，则向后移动一位，再一次执行主串和模式串的匹配，直到匹配成功或者没有找到匹配的字符串。</p>
+<p><a href="https://imgchr.com/i/kscgOO" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/02/16/kscgOO.md.jpg" alt="kscgOO.md.jpg"></a></p>
+<p>我们可以发现这个算法的复杂度很高，是O（n*m）,但是在实际的开发中，用的还挺多的，理由如下：</p>
+<p>实际的软件开发，大部分情况下，模式串和主串的长度都不会太长。而且每次模式串与主串的子串匹配的时候，当中途遇到不能匹配的字符的时候，就可以停止了，不需要把 m 个字符都比对一下。所以，尽管理论上的最坏情况时间复杂度是 O（n<em>m）,但是统计意义上大部分情况下，算法执行效率要比这个高得多。<br>BK 算法思想简单，代码实现也非常简单。简单意味着不容易出错，如果有 bug 也容易暴露和修复。<br>RK 算法：<br>在 BK 算法中，我们每一次匹配都需要将模式串的每一个字符和主串进行比较，所以时间复杂度比较高 O（m</em>n),所以 RK 算法在此基础上进行了优化。</p>
+<p>思路是这样的，通过哈希算法对主串的 n-m+1 个子串分别求哈希值，然后逐个与模式串的哈希值比较大小。如果某个子串的哈希值与模式串相等，那就说明对应的子串和模式串匹配了。因为哈希值是一个数字，数字之间比较是非常快速的。。所以比较效率就提升了。即不需要通过将每一个模式串和每一个需要匹配的主串进行字符匹配，只用匹配其哈希值就可以了。</p>
+<p>但是，我们仍然需要遍历子串中的每个字符，所以我们设计了一个合适的哈希算法来处理这个遍历。</p>
+<p>我们假设要匹配的字符串的字符集中只包含K个字符，我们可以用一个K进制数来表示一个子串，这个K进制数转化为十进制数，作为子串的哈希值表述起来有点抽象。</p>
+<p>例如：我们要处理a<del>z这26个小写字母，那我们就用二十六进制表示一个字符串，我们把a</del>z这个26个字符映射到0~25这26个数字，a就表示0，b 就表示 1.。。。。。。</p>
+<p><a href="https://imgchr.com/i/kscEWt" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/02/16/kscEWt.md.jpg" alt="kscEWt.md.jpg"></a></p>
+<p>将字符串对应成一个26进制的数，这样将这个26进制的值转换为10进制的数，这个数就是我们所需要的哈希值。</p>
+<p>相邻两个子串对应的哈希值计算公式有交集，也就是说，我们可以使用的哈希值s[i-1]很快的计算出s[i]的哈希值，根据设计，我们可以发现RK 可以实现只扫描一遍主串就能计算出所有的子串的哈希值了，所以这部分的时间复杂度是O（n)</p>
+<p><a href="https://imgchr.com/i/kscZSP" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/02/16/kscZSP.md.jpg" alt="kscZSP.md.jpg"></a></p>
+<p>模式串哈希值域每个子串哈希值之间的比较的时间复杂度是O（n）。所以 RK 算法整体的时间复杂度就是O（n)</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2019/04/11/译文-计算的未来是模拟/" data-toggle="tooltip" data-placement="top"
+                           title="译文|计算的未来是模拟">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2019/04/11/荐书-《黑客与画家》/" data-toggle="tooltip" data-placement="top"
+                           title="荐书|《黑客与画家》">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#BF-算法"><span class="toc-text">BF 算法</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#算法"
+                           title="算法">算法</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/starichat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/starichat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; starichat 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://starichat.pro/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="https://s2.ax1x.com/2019/01/26/knUd5q.jpg">
+</body>
+
+</html>

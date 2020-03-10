@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="starichat 的个人博客">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://s2.ax1x.com/2019/01/26/knUd5q.jpg">
+    <link rel="alternate" type="application/atom+xml" title="starichat" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        git简单上手教程｜starichat&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://starichat.pro/2019/04/11/git简单上手教程/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    starichat
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/archives/">archives</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="https://s2.ax1x.com/2019/01/26/knz3fe.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('https://s2.ax1x.com/2019/01/26/knz3fe.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>git简单上手教程</h1>
+                    
+                    <span class="meta">
+                         作者 starichat
+                        <span>
+                          日期 2019-04-11
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#开发工具"
+                           title="开发工具">开发工具</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            git简单上手教程
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="git-操作"><a href="#git-操作" class="headerlink" title="git 操作"></a>git 操作</h2><blockquote>
+<p>在实际开发过程中，我们可能需要采用 git 作为版本控制工具。所以对 git 的基本操作需要非常熟练，以至于我们能够应付工作上的需求。当然这里推荐一篇博文<a href="">廖雪峰的git教程</a>,有更详细的介绍。我这里对git的一般操作进行归纳总结。一篇文章让你快速学会使用git并能够应付工作的需求。</p>
+</blockquote>
+<p>git 操作流程:</p>
+<p><a href="https://imgchr.com/i/kcDezV" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/02/18/kcDezV.md.png" alt="kcDezV.md.png"></a></p>
+<p>通过上图我们先一次解释下几个概念：<br>1.工作区：本地电脑存放文件的地方<br>2.暂存区：在使用 git 管理项目文件的时候，本地项目文件会有一个.git 的隐藏文件夹，将这个.git 文件夹称为版本库。这个文件夹包含了两个部分：stage（暂存区)和本地仓库<br>3.本地仓库：使用commit 可以将暂存区中文件添加到本地仓库中的分支中<br>4.远程仓库：远程 git 服务器的仓库。</p>
+<p><a href="https://imgchr.com/i/kcDKLF" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/02/18/kcDKLF.md.png" alt="kcDKLF.md.png"></a></p>
+<blockquote>
+<p>git的一般操作其实就是：将工作区文件 add 到暂存区，然后将暂存区文件 commit 到本地仓库的分支中去，最后 push 远程仓库中，不过推送到远程仓库时，有时候需要 pull 更新一下（当团队其他成员推送了更新，就要pull一下更新一下本地仓库，来解决本地仓库和远程仓库不一致的冲突问题。）</p>
+</blockquote>
+<p>操作如下：</p>
+<h2 id="git-init-将当前目录初始化为-git-管理的目录"><a href="#git-init-将当前目录初始化为-git-管理的目录" class="headerlink" title="git init 将当前目录初始化为 git 管理的目录"></a>git init 将当前目录初始化为 git 管理的目录</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git init </span><br><span class="line">初始化空的 Git 仓库于 &#x2F;home&#x2F;wangxinlong&#x2F;Desktop&#x2F;notes&#x2F;.git&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h2 id="git-clone-url-clone-远程仓库到本地，同时将本地目录也自动成为-git-管理目录"><a href="#git-clone-url-clone-远程仓库到本地，同时将本地目录也自动成为-git-管理目录" class="headerlink" title="git clone [url] : clone 远程仓库到本地，同时将本地目录也自动成为 git 管理目录"></a>git clone [url] : clone 远程仓库到本地，同时将本地目录也自动成为 git 管理目录</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git clone [url]</span><br></pre></td></tr></table></figure>
+<h2 id="git-status-查看状态"><a href="#git-status-查看状态" class="headerlink" title="git status 查看状态"></a>git status 查看状态</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git status</span><br><span class="line"></span><br><span class="line">位于分支 master</span><br><span class="line"></span><br><span class="line">初始提交</span><br><span class="line"></span><br><span class="line">未跟踪的文件:</span><br><span class="line">  （使用 &quot;git add &lt;文件&gt;...&quot; 以包含要提交的内容）</span><br><span class="line"></span><br><span class="line">	&quot;\347\224\250java\350\247\243\345\216\213\346\226\207\344\273\266.md&quot;</span><br><span class="line"></span><br><span class="line">提交为空，但是存在尚未跟踪的文件（使用 &quot;git add&quot; 建立跟踪）</span><br></pre></td></tr></table></figure>
+
+<h2 id="git-add-添加工作区内容到暂存区"><a href="#git-add-添加工作区内容到暂存区" class="headerlink" title="git add 添加工作区内容到暂存区"></a>git add 添加工作区内容到暂存区</h2><p>git add files</p>
+<p>这个时候查看 git status 可以看到</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> git add git操作指令.md </span><br><span class="line"></span><br><span class="line">位于分支 master</span><br><span class="line"></span><br><span class="line">初始提交</span><br><span class="line"></span><br><span class="line">要提交的变更：</span><br><span class="line">  （使用 &quot;git rm --cached &lt;文件&gt;...&quot; 以取消暂存）</span><br><span class="line"></span><br><span class="line">	新文件：   &quot;\347\224\250java\350\247\243\345\216\213\346\226\207\344\273\266.md&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="git-commit-一次性将暂存区的所有修改提交到分支"><a href="#git-commit-一次性将暂存区的所有修改提交到分支" class="headerlink" title="git commit 一次性将暂存区的所有修改提交到分支"></a>git commit 一次性将暂存区的所有修改提交到分支</h2><p>git commit -m”message” ,git commit 需要加上-m”message” 添加此次提交的信息，为了规范，一般描述此次提交所完成的功能或者修改。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git commit -m&quot;first commit&quot;</span><br><span class="line">[master （根提交） 9dda572] first commit</span><br><span class="line"> 1 file changed, 165 insertions(+)</span><br><span class="line"> create mode 100644 &quot;\347\224\250java\350\247\243\345\216\213\346\226\207\344\273\266.md&quot;</span><br></pre></td></tr></table></figure>
+<p>这个时候暂存区里就没有内容了<br>输入 git status 会显示如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">位于分支 master</span><br><span class="line">无文件要提交，干净的工作区</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h2><p>git remote add origin repository</p>
+<h2 id="查看添加的仓库"><a href="#查看添加的仓库" class="headerlink" title="查看添加的仓库"></a>查看添加的仓库</h2><p>git remote -v</p>
+<h2 id="git-push-推送到远程仓库"><a href="#git-push-推送到远程仓库" class="headerlink" title="git push 推送到远程仓库"></a>git push 推送到远程仓库</h2><p> git push origin master 推送本地仓库主分支到远程仓库主分支</p>
+<h2 id="git-pull-拉取远程仓库的更新"><a href="#git-pull-拉取远程仓库的更新" class="headerlink" title="git pull 拉取远程仓库的更新"></a>git pull 拉取远程仓库的更新</h2><p>git pull origin developer 拉取远程仓库 developer 分支下的更新</p>
+<blockquote>
+<p>当我们 fork 了其他人的项目到自己远程仓库时,我们对自己的远程仓库的推送和之前一样，git add 后 git commit 然后 git push 即可。然后自己的远程仓库网页上点击”pull request”一直下一步即可，即可将自己的更改推送到fork的原仓库下。或者直接 git remote add origin upstream [源仓库url] 添加源仓库，然后git push 到源仓库上去。但是一般情况下，我们都没有权限直接推送到源仓库上。一般都是推送到自己的远程仓库，然后pull request。</p>
+</blockquote>
+<h2 id="git-log-从最近一次提交显示到最远一次提交信息"><a href="#git-log-从最近一次提交显示到最远一次提交信息" class="headerlink" title="git log 从最近一次提交显示到最远一次提交信息"></a>git log 从最近一次提交显示到最远一次提交信息</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git log</span><br><span class="line"></span><br><span class="line">commit b9f2c9a2135ed129f25562094d43344b042ec860</span><br><span class="line">Author: xxx@xxx.com &lt;starichat@163.com&gt;</span><br><span class="line">Date:   Mon Feb 18 13:47:20 2019 +0800</span><br><span class="line"></span><br><span class="line">    second commit</span><br><span class="line"></span><br><span class="line">commit 9dda57206e373dd57e862a121e090ce96a8a9640</span><br><span class="line">Author: xxx@xxx.com &lt;starichat@163.com&gt;</span><br><span class="line">Date:   Mon Feb 18 13:44:31 2019 +0800</span><br><span class="line"></span><br><span class="line">    first commit</span><br></pre></td></tr></table></figure>
+<h2 id="git-reset-–hard-HEAD-将工作区文件回退到指定版本号的状态"><a href="#git-reset-–hard-HEAD-将工作区文件回退到指定版本号的状态" class="headerlink" title="git reset –hard HEAD 将工作区文件回退到指定版本号的状态"></a>git reset –hard HEAD 将工作区文件回退到指定版本号的状态</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git reset --hard  9dda57206e373dd57e862a121e090ce96a8a9640</span><br><span class="line">HEAD 现在位于 9dda572 first commit</span><br><span class="line">$ git reset –hard 9dda57206e373dd57e862a121e090ce96a8a9640</span><br><span class="line">HEAD 现在位于 9dda572 first commit</span><br><span class="line">$ git log</span><br><span class="line">commit 9dda57206e373dd57e862a121e090ce96a8a9640</span><br><span class="line">Author: xxx@xxx.com starichat@163.com</span><br><span class="line">Date: Mon Feb 18 13:44:31 2019 +0800</span><br><span class="line"></span><br><span class="line">first commit</span><br></pre></td></tr></table></figure>
+<h2 id="git-reflog-显示所有提交"><a href="#git-reflog-显示所有提交" class="headerlink" title="git reflog 显示所有提交"></a>git reflog 显示所有提交</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git reflog</span><br><span class="line">9dda572 HEAD@&#123;0&#125;: reset: moving to 9dda57206e373dd57e862a121e090ce96a8a9640</span><br><span class="line">6f4b918 HEAD@&#123;1&#125;: commit: third commit</span><br><span class="line">b9f2c9a HEAD@&#123;2&#125;: reset: moving to b9f2c9a2135ed129f25562094d43344b042ec860</span><br><span class="line">9dda572 HEAD@&#123;3&#125;: reset: moving to 9dda57206e373dd57e862a121e090ce96a8a9640</span><br><span class="line">b9f2c9a HEAD@&#123;4&#125;: commit: second commit</span><br><span class="line">9dda572 HEAD@&#123;5&#125;: commit (initial): first commit</span><br></pre></td></tr></table></figure>
+<p>我们只要拿到 head 就可以将工作区改为任意一个版本了,完全不用担心修改了不能退回到之前版本了，可以尽情尽兴开发。</p>
+<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><p>每次修改,如果没有add 需要先 add 才能 commit</p>
+<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><p>git checkout – file 撤销工作区对file 的修改<br>一种是file自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；<br>一种是file已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。<br>git reset HEAD 将暂存区的修改回退到工作区,当我们用HEAD时表示最新的版本</p>
+<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><p>先在本地磁盘上删除文件，如果确定需要删除，将版本库中的文件也删除的话 ，就继续执行 git rm file 最后 git commit file 就将该文件从工作区和版本库中都删除了。<br>如果发现本地文件删错了,可以git checkout –file 从版本库中恢复工作区文件。</p>
+<h3 id="分支管理："><a href="#分支管理：" class="headerlink" title="分支管理："></a>分支管理：</h3><p>git merge developer 将developer 合并到 master 分支</p>
+<h2 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h2><p>git checkout -b feature 创建并切换分支<br>git branch -d frature 删除分支<br>git log –graph 分支合并图</p>
+<h2 id="bug分支"><a href="#bug分支" class="headerlink" title="bug分支"></a>bug分支</h2><p>git stash 将当前工作现场储藏起来,等以后恢复现场在继续工作。<br>git stash 之后 工作区是干净的。<br>git checkout master 切换到master 分支去处理<br>git stash list 查看stash 内容存放的位置<br>恢复的方法有:</p>
+<p>一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；<br>另一种方式是用git stash pop，恢复的同时把stash内容也删了：<br>删除分支<br>如果要丢弃一个没有被合并过的分支，可以通过git branch -D 强行删除。</p>
+<h2 id="git-branch-–set-upstream-branch-name-建立本地分支和远程分支的关联"><a href="#git-branch-–set-upstream-branch-name-建立本地分支和远程分支的关联" class="headerlink" title="git branch –set-upstream branch-name 建立本地分支和远程分支的关联"></a>git branch –set-upstream branch-name 建立本地分支和远程分支的关联</h2><p>使用origin/branch-name；<br>rebase操作可以把本地未push的分叉提交历史整理成直线；</p>
+<p>rebase的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2019/04/13/Review-线程的基本介绍/" data-toggle="tooltip" data-placement="top"
+                           title="Review|线程的基本介绍">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2019/04/11/搭建自己的hexo博客以及一些踩坑指南/" data-toggle="tooltip" data-placement="top"
+                           title="搭建自己的hexo博客以及一些踩坑指南">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-操作"><span class="toc-text">git 操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-init-将当前目录初始化为-git-管理的目录"><span class="toc-text">git init 将当前目录初始化为 git 管理的目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-clone-url-clone-远程仓库到本地，同时将本地目录也自动成为-git-管理目录"><span class="toc-text">git clone [url] : clone 远程仓库到本地，同时将本地目录也自动成为 git 管理目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-status-查看状态"><span class="toc-text">git status 查看状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-add-添加工作区内容到暂存区"><span class="toc-text">git add 添加工作区内容到暂存区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-commit-一次性将暂存区的所有修改提交到分支"><span class="toc-text">git commit 一次性将暂存区的所有修改提交到分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加远程仓库"><span class="toc-text">添加远程仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看添加的仓库"><span class="toc-text">查看添加的仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-push-推送到远程仓库"><span class="toc-text">git push 推送到远程仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-pull-拉取远程仓库的更新"><span class="toc-text">git pull 拉取远程仓库的更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-log-从最近一次提交显示到最远一次提交信息"><span class="toc-text">git log 从最近一次提交显示到最远一次提交信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-reset-–hard-HEAD-将工作区文件回退到指定版本号的状态"><span class="toc-text">git reset –hard HEAD 将工作区文件回退到指定版本号的状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-reflog-显示所有提交"><span class="toc-text">git reflog 显示所有提交</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改"><span class="toc-text">修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#撤销修改"><span class="toc-text">撤销修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除文件"><span class="toc-text">删除文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分支管理："><span class="toc-text">分支管理：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决冲突"><span class="toc-text">解决冲突</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bug分支"><span class="toc-text">bug分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-branch-–set-upstream-branch-name-建立本地分支和远程分支的关联"><span class="toc-text">git branch –set-upstream branch-name 建立本地分支和远程分支的关联</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#开发工具"
+                           title="开发工具">开发工具</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/starichat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/starichat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; starichat 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://starichat.pro/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="https://s2.ax1x.com/2019/01/26/knUd5q.jpg">
+</body>
+
+</html>

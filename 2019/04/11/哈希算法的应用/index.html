@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="starichat 的个人博客">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://s2.ax1x.com/2019/01/26/knUd5q.jpg">
+    <link rel="alternate" type="application/atom+xml" title="starichat" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        哈希算法的应用｜starichat&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://starichat.pro/2019/04/11/哈希算法的应用/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    starichat
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/archives/">archives</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="https://s2.ax1x.com/2019/01/26/knz3fe.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('https://s2.ax1x.com/2019/01/26/knz3fe.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>哈希算法的应用</h1>
+                    
+                    <span class="meta">
+                         作者 starichat
+                        <span>
+                          日期 2019-04-11
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#算法"
+                           title="算法">算法</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            哈希算法的应用
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>最近数据泄露似乎出现的比较频繁，这半年以来已经有华住，陌陌，Quora，12306 …..出现数据泄露。当然，现在大多数网站存储的密码也不再会是明文形式了。今天，我们借密码泄露事件谈一谈怎样才能安全地保存用户密码这么重要的数据呢？</p>
+<p>首先，要知道如何保存用户密码，我们必须先要明白哈希算法。<br>什么是哈希算法：<br>我们知道散列表，散列函数吧？不知道没关系，我下文会介绍，可以暂时做个简单了解。</p>
+<p>哈希算法的定义就是将任意长度的二进制值串映射为固定长度的二进制值串，这个映射的规则就是哈希算法，而通过原始数据映射之后得到的二进制值串就是哈希值。</p>
+<p>一个好的哈希算法需要满足以下几个条件：</p>
+<ul>
+<li>从哈希值不能反向推导出原始数据</li>
+<li>对输入数据敏感，那怕原始数据只修改了一个bit，最后得到的哈希值也大不相同。</li>
+<li>散列冲突的概率要很小，对于不同的原始数据，哈希值相同的概率非常小</li>
+<li>哈希算法的执行效率要尽量高，针对较长的文本，也能快速地计算出哈希值。</li>
+<li>业界著名的哈希算法有诸如 MD5,SHA，DES, AES 等优秀的算法。但仍然不能算作很完美。<br>先来看看MD5算法吧</li>
+</ul>
+<p>MD5 加密实例<br>先看一种 md5 加密的实现代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static String md5(String plainText) &#123;</span><br><span class="line">    &#x2F;&#x2F;定义一个字节数组</span><br><span class="line">    byte[] secretBytes &#x3D; null;</span><br><span class="line">    try &#123;</span><br><span class="line">        &#x2F;&#x2F; 生成一个MD5加密计算摘要</span><br><span class="line">        MessageDigest md &#x3D; MessageDigest.getInstance(&quot;MD5&quot;);</span><br><span class="line">        &#x2F;&#x2F;对字符串进行加密</span><br><span class="line">        md.update(plainText.getBytes());</span><br><span class="line">        &#x2F;&#x2F;获得加密后的数据</span><br><span class="line">        secretBytes &#x3D; md.digest();</span><br><span class="line">    &#125; catch (NoSuchAlgorithmException e) &#123;</span><br><span class="line">        throw new RuntimeException(&quot;没有md5这个算法！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;将加密后的数据转换为16进制数字</span><br><span class="line">    String md5code &#x3D; new BigInteger(1, secretBytes).toString(16);&#x2F;&#x2F; 16进制数字</span><br><span class="line">    &#x2F;&#x2F; 如果生成数字未满32位，需要前面补0</span><br><span class="line">    for (int i &#x3D; 0; i &lt; 32 - md5code.length(); i++) &#123;</span><br><span class="line">        md5code &#x3D; &quot;0&quot; + md5code;</span><br><span class="line">    &#125;</span><br><span class="line">    return md5code;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过以上 MD5 算法加密后，我们发现加密后的密文有两个很突出的特点：</p>
+<p>无论要哈希的文本有多长或者多短，通过哈希后的值的长度都是相同的。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">md5(&quot;asdfaf545413adafakfljsfa&quot;)  7404686fc7bff68dc560021f9bc08329</span><br><span class="line">md5(&quot;好&quot;)                        ac2c8f13c6e60810197b19d683f5f184</span><br><span class="line">改变一个字符就会有很大的差别</span><br><span class="line"></span><br><span class="line">md5(&quot;asdfaf545413adafakfljsfa&quot;)  7404686fc7bff68dc560021f9bc08329</span><br><span class="line">md5(&quot;asdfaf645413adafakfljsfa&quot;)  9fc80292ab77a83f8d68e5eb708a73b3</span><br><span class="line">我只将其中一个数字 5 变成了数字 6 ，但是密文变化特别大。</span><br></pre></td></tr></table></figure>
+<h2 id="字典攻击"><a href="#字典攻击" class="headerlink" title="字典攻击"></a>字典攻击</h2><p>但是通过这段实例，我们也发现了虽然哈希算法是不可逆的，但如果数据被脱裤，虽然拿到的是加密后的密文，但可以通过猜的方式来破解密码，这是因为，有些用户的密码太简单。比如很多人习惯用<br>000000 123456 这样的简单数字组合做密码，就很容易被猜中。 关于字典攻击，这里有一篇关于彩虹表的文章可以帮助我们理解字典攻击什么是彩虹表</p>
+<p>针对字典攻击，我们引入一个salt，跟用户的密码组合在一起，增加密码的复杂度，同时即使破解之后也无法拿到所有用户的数据。我们拿组合之后的字符串来说，<br>将它存储到数据库中，进一步增加破解的难度。不过我这里想多说一句，我认为安全和攻击是一种博弈关系，不存在绝对的安全。所有的安全措施，就是增加攻击的成本而已。</p>
+<p>基于哈希算法的 4 个特点，我们有很多应用，例如：</p>
+<h2 id="应用：安全加密"><a href="#应用：安全加密" class="headerlink" title="应用：安全加密"></a>应用：安全加密</h2><p>最常用于安全加密的哈希算法是：MD5,SHA,除此之外还有很多加密算法，如DES,AES<br>对于加密算法有两点非常重要</p>
+<p>1.很难根据哈希值反向推导出原始数据，<br>2.散列冲突的概率要很小。<br>第一点就是要保证加密后原始数据的泄露而导致数据被反向推导出来。不管什么哈希算法，都无法做到绝对的 0 冲突，我们只能做到减少冲突。</p>
+<p>在组合数学中有这样一个理论，鸽笼原理，如果有 10 个鸽笼，但是有 11 只鸽子，必然会有至少有两只鸽子在一个鸽笼里。</p>
+<p>我们知道，哈希算法产生的哈希值的长度是固定且有限的。比如前面举的 MD5 的例子，哈希值是固定的 128 位二进制串，能表示的数据非常有限，最多只能表示 2^128 个数据，但是现实情况是数据非常多。</p>
+<p>不过，即便哈希算法存在散列冲突的情况，但是因为哈希值的范围很大，冲突的概率极低，所以相对来说还是很难破解。如 MD5 2^128 这已经是一个天文数字了。<br>如果拿到一个MD5哈希值，希望通过穷举的方法来找出答案，那耗费的时间也是一个天文数字。<br>在平时开发中，我们也需要权衡选择算法的利弊，虽然有更高的加密算法，但是时间效率也会降低。所以，我们在实际开发中也需要不同的需求选择不同的哈希算法。</p>
+<h2 id="应用：唯一标识"><a href="#应用：唯一标识" class="headerlink" title="应用：唯一标识"></a>应用：唯一标识</h2><p>如果要在海量的图库中，搜索一张图是否存在，我们不能单纯地用图片的元信息来比对，因为有可能存在名称相同但图片内容不同，或者名称不同图片相同的情况。那又该如何搜索呢？</p>
+<p>任何文件在计算机中都可以表示成二进制码串，所以，比较笨的办法就是，拿要查找的图片的二进制码串与图库中所有图片的二进制码串进行比对。如果相同，则说明图片存在，但是这种比对方法太耗时了。</p>
+<p>所以，我们可以给每一个图片取一个唯一标识，或者说信息摘要。比如，我们可以从图片的二进制码串开头取 100 个字节，从中间取100个字节，从最后再取100个字节，然后将这300个字节放在一块，通过哈希算法得到一个哈希字符串，用它作为图片的唯一标识。通过这个唯一标识来判定图片是否在图库中，这样可以减少很多工作量。</p>
+<p>如果不存在，那就说明这个图片不在图库中，如果存在，我们再通过散列表中存储的文件路径，获取到这个已经存在的图片，跟现在要插入的图片做全量的比对，看是否完全一样。如果一样，就说明已经存在，如果不一样，说明两张图片尽管唯一标识相同，但是并不是相同的图片。</p>
+<h2 id="应用：数据校验"><a href="#应用：数据校验" class="headerlink" title="应用：数据校验"></a>应用：数据校验</h2><p>目前很多软件都是基于 p2p 协议下载，就是我们可以从多个机器并行下载一个文件，这个文件可能被分割成很多文件块。等所有文件块都下载<br>完成后，在组装成一个完整的电影文件。但是我们知道，网络传输是不安全的，下载的文件块很有可能被宿主机器恶意修改过，又或者下载过程汇总出现了错误，所以下载的文件块很有可能是不完整的。如果我们没有能力检测这种恶意修改或者文件下载出错，就会导致最终合并后的电影无法观看，甚至导致电脑中毒。现在的问题是怎样校验。</p>
+<p>我们通过哈希算法，对100个文件块分别取哈希值，并且保存在种子文件中。我们在前面讲过，哈希算法有一个特点，对数据很敏感。只要文件块的内容有一丁点的改变，最后计算出的哈希值就会完全不同。所以，当文件下载完成之后，我们可以通过相同的哈希算法，对下载好的文件块逐一求哈希值，然后跟种子文件中保存的<br>哈希值进行比对。如果不同，则说明被篡改了。</p>
+<p> 我们接着来看看哈希算法的其他应用</p>
+<p>如今分布式技术发展的很成熟，应用也很广泛。web方面的岗位也基本都会问到分布式的问题。那么今天的哈希算法也正好就是用来解决分布式问题。</p>
+<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>什么是负载均衡，这里有一篇很详细的介绍文章。什么是<a href="https://zhuanlan.zhihu.com/p/32841479" target="_blank" rel="noopener">负载均衡</a></p>
+<p>负载均衡的实现方式有很多种：<br>1.重定向：将请求全部发送到前置机，由前置机通过算法得到要分配给那台应用服务器，然后响应给客户端，由客户端重定向到应用服务器的一种方式。<br>2.反向代理：通过在前置机，使用反向代理的方式，将请求分发到应用服务器，客户端无需再请求一次，实现方式通常有两种，一种是用交换机实现，还有一种是用ngnix实现。<br>3.数据链路返回<br>这种方式，通过给应用服务器设置虚拟ip，然后通过修改mac地址的方式，将请求分发出去，而应用服务器收到请求后，可以直接响应给客户端，而不需要经过前置机。</p>
+<p>负载均衡的算法有很多，有轮询，随机，加权轮询等。如何才能实现一个会话粘滞的负载均衡的算法？也就是说，在同一个客户端上，在一次会话中的所有请求都路由到服务器上。</p>
+<p>最直接的方法就是，维护一张映射关系表，这张表的内容是客户端IP地址或者会话ID与服务器编号的映射关系。客户端发出的每次请求，都要现在映射表中查找对应路由到服务器编号，然后再请求编号对应的服务器。这种方法简单直观，但也有好多弊端。</p>
+<p>如果客户端很多，映射表可能会很大，比较浪费内存空间。<br>客户端下线，上线，服务器扩容，缩容都会导致映射失效，这样维护映射表的成本就会很大<br>如果借助哈希算法，这些问题可以被解决。通过哈西算法，对客户端ip地址或者会话id计算哈希值，将取得哈希值与服务器列表的大小进行取模运算，最终得到的值就是应该被路由到服务器编号。</p>
+<h2 id="数据分片"><a href="#数据分片" class="headerlink" title="数据分片"></a>数据分片</h2><p>哈希算法可以用于数据分片。<br>1.如何统计“搜索关键词”出现的次数？<br>假如我们有很大的日志文件，这里面记录了用户的搜索关键词，我们想要快速统计出每个关键词被搜索的次数，该怎么做呢？</p>
+<p>主要有两个难点：</p>
+<p>搜索日志很大，没法放到一台机器的内存中<br>如果只用一台机器看来处理这么巨大的数据，处理时间会很长。<br>针对以上难点，我们对数据进行分片，然后采用多台机器处理的方法，来提高处理速度。具体的思路是这样的：为了提高处理的速度，我们用n台机器并行处理。我们从搜索记录的日志文件中，依次读出每个搜索关键词，并且通过哈希函数计算哈希值，然后再根 n 取模，最终得到的值，就是应该被分配到的机器编号。</p>
+<p>这样，哈希值相同的搜索关键词就被分配到了同一个机器上。每个机器会分别计算关键词出现的次数，最后合并起来就是最终的结果。</p>
+<p>如何快速判断图片是否在图库中。<br>如何快速判断图片是否在图库中？上一节我们讲过这个例子，不知道你还记得吗？当时我介绍了一种方法，即给每个图片取唯一标识，然后构建散列表。</p>
+<p>假设现在我们图库中有一亿张图片，很显然，在单台机器的内存有限，而一亿张图片构建散列表显然远远超过了单台机器的内存上线。</p>
+<p>解决方案：我们对数据进行分片，然后采用多机处理，让每台机器只维护一部分图片对应的散列表。我们每次从图库中读取一张图片计算唯一标识，然后与机器数求余取模，得到的值就是要分配的机器编号。然后将这个图片的唯一标识和图片路径发往对应的机器构建散列表。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2019/04/11/荐书-《黑客与画家》/" data-toggle="tooltip" data-placement="top"
+                           title="荐书|《黑客与画家》">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2019/04/11/shiro-学习框架笔记/" data-toggle="tooltip" data-placement="top"
+                           title="shiro 学习框架笔记">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#字典攻击"><span class="toc-text">字典攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用：安全加密"><span class="toc-text">应用：安全加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用：唯一标识"><span class="toc-text">应用：唯一标识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用：数据校验"><span class="toc-text">应用：数据校验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#负载均衡"><span class="toc-text">负载均衡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据分片"><span class="toc-text">数据分片</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#算法"
+                           title="算法">算法</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/starichat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/starichat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; starichat 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://starichat.pro/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="https://s2.ax1x.com/2019/01/26/knUd5q.jpg">
+</body>
+
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="starichat 的个人博客">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://s2.ax1x.com/2019/01/26/knUd5q.jpg">
+    <link rel="alternate" type="application/atom+xml" title="starichat" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        C++彻底弄懂指针和引用｜starichat&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://starichat.pro/2019/05/28/C-彻底弄懂指针和引用/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    starichat
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/archives/">archives</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="https://s2.ax1x.com/2019/01/26/knz3fe.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('https://s2.ax1x.com/2019/01/26/knz3fe.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>C++彻底弄懂指针和引用</h1>
+                    
+                    <span class="meta">
+                         作者 starichat
+                        <span>
+                          日期 2019-05-28
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#C++"
+                           title="C++">C++</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            C++彻底弄懂指针和引用
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="学习-c-c-自然离不开其核心内容–指针"><a href="#学习-c-c-自然离不开其核心内容–指针" class="headerlink" title="学习 c/c++ 自然离不开其核心内容–指针"></a>学习 c/c++ 自然离不开其核心内容–指针</h1><p>上一篇博文已经很详细的介绍了指针，<a href="">点击这里，可查看</a>。因为 C++ 里增加了引用的概念。</p>
+<p>引用可以看成是一个已定义变量的别名。它和该变量表示的东西是一样的。同时，引用一旦确定了，就无法再更改，比如王五的别名叫二狗子，那么二狗子就是王五的引用，就是说二狗子今年了25岁了，那王五也是25岁。但是二狗子就不能再去当张三的引用，二狗子只能和王五建立关联。同时，王五也可以有其他的别名，比如三狗子。。。。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line"></span><br><span class="line">    int a &#x3D; 10;</span><br><span class="line">    int &amp;b &#x3D; a;  &#x2F;&#x2F; a 和 b的本质是一样的，b是a的小名而已</span><br><span class="line">   </span><br><span class="line">    a &#x3D; 11;</span><br><span class="line">    &#123;</span><br><span class="line">        int *p &#x3D; &amp;a;</span><br><span class="line">        *p &#x3D; 12; &#x2F;&#x2F; 利用指针操作给a赋值12</span><br><span class="line">        cout&lt;&lt;b&lt;&lt;endl;  &#x2F;&#x2F; 尽管没有直接对b进行操作，但是这里b仍然被更改了</span><br><span class="line">        cout&lt;&lt;a&lt;&lt;endl; &#x2F;&#x2F; a 也被更改了</span><br><span class="line">    &#125;</span><br><span class="line">    b &#x3D; 14; &#x2F;&#x2F; 对b进行赋值，a和b都被更改了</span><br><span class="line">    cout &lt;&lt; &quot;a&#x3D;&quot;&lt;&lt;a&lt;&lt;&quot;,b&#x3D;&quot;&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="引用的作用"><a href="#引用的作用" class="headerlink" title="引用的作用"></a>引用的作用</h2><p>先区分一下引用和指针：</p>
+<ul>
+<li>引用被创建的同时，必须被初始化（指针可以在任何时候被初始化</li>
+<li>不能有NULL引用，引用必须与合法的存储单元关联（指针可以使NULL）</li>
+<li>一旦引用被初始化，就不能改变引用的关系（指针可以随便改变所指的对象）。</li>
+</ul>
+<p>引用一般作为函数参数和返回值</p>
+<ol>
+<li>作为函数参数<br>C++中，函数的参数和返回值，一般有三种传递方式：值传递、指针传递和引用传递。<br>其实，指针传递本质也是值传递，只不过它传递的地址值。</li>
+</ol>
+<p>值传递：：值传递,值传递传递的外部变量的一份拷贝，即副本，即函数体内的操作都是对该副本的操作，不会改变原始值的大小。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void swap(int x,int y)&#123;</span><br><span class="line">    int temp &#x3D; x;</span><br><span class="line">    x &#x3D; y;</span><br><span class="line">    y &#x3D; temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>指针传递也是一种值传递，只不过它的值是地址值。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void swap1(int *x, int *y)</span><br><span class="line">&#123;   </span><br><span class="line">    &#x2F;&#x2F; x、y是地址值,他是外部变量实参的一份拷贝。这里不会改变地址值的大小，但是该地址指向的内容可以发生改变。</span><br><span class="line">    cout&lt;&lt;*x&lt;&lt;&quot;-&quot;&lt;&lt;*y&lt;&lt;endl;</span><br><span class="line">    int temp &#x3D; *x;</span><br><span class="line">    *x &#x3D; *y;</span><br><span class="line">    *y &#x3D; temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>引用传递：参数是外部变量的一个引用，改变引用的值就是改变实参的值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void swap2(int &amp;x,int &amp;y)&#123;</span><br><span class="line">    int temp &#x3D; x;</span><br><span class="line">    x &#x3D; y;</span><br><span class="line">    y &#x3D; temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int x &#x3D; 10,y&#x3D;15;</span><br><span class="line">    swap(x,y);</span><br><span class="line">    cout&lt;&lt;x&lt;&lt;&quot;,&quot;&lt;&lt;y&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;&quot;x,y的地址&quot;&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;&amp;x&lt;&lt;&quot;,&quot;&lt;&lt;&amp;y&lt;&lt;endl;&#x2F;&#x2F; x、y的地址没有发生过改变，但是值变了</span><br><span class="line">    swap1(&amp;x,&amp;y);</span><br><span class="line">    cout&lt;&lt;&amp;x&lt;&lt;&quot;,&quot;&lt;&lt;&amp;y&lt;&lt;endl;</span><br><span class="line">    swap2(x,y);</span><br><span class="line">    cout&lt;&lt;x&lt;&lt;&quot;,&quot;&lt;&lt;y&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意在指针传递的使用，如果是这样：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void swap2(int *x,int *y)&#123;</span><br><span class="line">    int *temp &#x3D; x;</span><br><span class="line">    x &#x3D; y;</span><br><span class="line">    y &#x3D; temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样没有交换成功是因为：这里把副本指针地址交换了，但是并不会改变外部变量额值。</p>
+<blockquote>
+<p>所以如果的确只需要借用一下某个对象的”别名”，那么就用”引用”，而不要用”指针”，以免发生意外。其他情况依然用指针。</p>
+</blockquote>
+<ol start="2">
+<li>做返回值</li>
+</ol>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2019/05/28/一文弄懂指针/" data-toggle="tooltip" data-placement="top"
+                           title="一文弄懂指针">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2019/05/17/趣解二叉树/" data-toggle="tooltip" data-placement="top"
+                           title="趣解二叉树">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习-c-c-自然离不开其核心内容–指针"><span class="toc-text">学习 c&#x2F;c++ 自然离不开其核心内容–指针</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#引用的作用"><span class="toc-text">引用的作用</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#C++"
+                           title="C++">C++</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/starichat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/starichat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; starichat 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/" target="_blank" rel="noopener">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://starichat.pro/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="https://s2.ax1x.com/2019/01/26/knUd5q.jpg">
+</body>
+
+</html>
